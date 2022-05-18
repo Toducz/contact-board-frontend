@@ -1,0 +1,20 @@
+﻿<div class="container">
+
+    <div *ngFor="let row of fetchData">
+        <div class="d-flex justify-content-center" style="width: 100%;">
+
+            <textarea placeholder="Type a message" style="width: 80%;" type="text" name="description"
+                [(ngModel)]="row.description"></textarea>
+
+            <textarea placeholder="Type a message" style="width: 12.5%;" type="text" name="textarea"
+                [(ngModel)]="row.ratingValue"></textarea>
+
+            <button (click)="row.isEmojiPickerVisible = !row.isEmojiPickerVisible;" style="width: 7.5%;">😀</button>
+
+            <emoji-mart class="emoji-mart" *ngIf="row.isEmojiPickerVisible"
+                (emojiSelect)="addEmoji($event, row.isEmojiPickerVisible)" title="Choose your emoji">
+            </emoji-mart>
+        </div>
+    </div>
+
+</div>

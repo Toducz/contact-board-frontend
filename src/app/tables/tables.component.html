@@ -1,0 +1,94 @@
+<div class="container">
+
+  <h1> Boards </h1>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <!-- Position Column -->
+
+    <ng-container matColumnDef="table-name">
+      <th mat-header-cell *matHeaderCellDef>Board Name </th>
+      <td mat-cell  class="mat-cell-a" *matCellDef="let element"> {{element.tableName}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="created-person">
+      <th mat-header-cell *matHeaderCellDef> Created person </th>
+      <td mat-cell class="mat-cell-a" *matCellDef="let element"> {{element.userEmailOwner}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell  class="mat-cell-a" *matCellDef="let element"> {{element.descriptions}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row class="mat-row-a" *matRowDef="let row; columns: displayedColumns;" (click)="changeDefaultTableId(row)" [class.demo-row-is-clicked]="defaultTableId==row.id"></tr>
+  </table>
+</div>
+
+
+<div class="container">
+
+  <h1> My Boards </h1>
+
+  <table mat-table [dataSource]="myBoardData" class="mat-elevation-z8 demo-board">
+    <!-- Position Column -->
+
+    <ng-container matColumnDef="board-name">
+      <th mat-header-cell *matHeaderCellDef> Board name </th>
+      <td mat-cell *matCellDef="let element"> {{element.tableName}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell  *matCellDef="let element"><button (click)="deleteMyBoard(element)" class="btn btn-danger" >Delete</button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="myBoardDisplayedColumns" ></tr>
+    <tr mat-row [class.demo-row-a-is-clicked]="clickedRows.has(row)" *matRowDef="let row; columns: myBoardDisplayedColumns;"></tr>
+  </table>
+</div>
+
+
+
+
+<div class="container">
+
+  <h1> Invitation </h1>
+
+  <table mat-table [dataSource]="invitationBoardData" class="mat-elevation-z8 demo-invitation">
+    <!-- invitationBoardDataDisplayedColumns: string[] = ['tableName', 'sentInvitationEmail', "description", "confirmed", "delete-ic"]; -->
+
+    <ng-container matColumnDef="tableName1">
+      <th mat-header-cell *matHeaderCellDef> Board name </th>
+      <td mat-cell *matCellDef="let element"> {{element.tableName}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="sentInvitationEmail">
+      <th mat-header-cell *matHeaderCellDef> Sent invitation </th>
+      <td mat-cell *matCellDef="let element">{{element.sentInvitationEmail}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell  *matCellDef="let element">{{element.description}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="confirmed">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element"><button  class="btn btn-success" >Confirm</button></td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete-ic">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element"><button  class="btn btn-danger" >delete</button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="invitationBoardDataDisplayedColumns" ></tr>
+    <tr mat-row  *matRowDef="let row; columns: invitationBoardDataDisplayedColumns;"></tr>
+  </table>
+</div>
+

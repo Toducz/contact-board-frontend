@@ -1,0 +1,20 @@
+﻿<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">Home</a>
+        <a class="nav-item nav-link" routerLink="/feedback" routerLinkActive="active">Feedback</a>
+        <a class="nav-item nav-link" routerLink="/newTable" routerLinkActive="active">Create table</a>
+        <a class="nav-item nav-link" routerLink="/tables" routerLinkActive="active">Tables</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+
+    </div>
+
+    <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link" *ngIf="defaultTable" routerLink="/tables" routerLinkActive="active">{{ defaultTable.tableName }}</a>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

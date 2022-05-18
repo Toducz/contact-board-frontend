@@ -1,0 +1,114 @@
+.demo-table {
+  width: 100%;
+}
+
+.container{
+  margin-top: 1cm;
+}
+
+.mat-column-table-name {
+  padding-left: 16px;
+  font-size: 11px;
+
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 17% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-created-person {
+  padding-left: 16px;
+  font-size: 11px;
+}
+
+.mat-column-description {
+  padding-left: 16px;
+  font-size: 11px;
+
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 17% !important;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+
+.mat-row-a .mat-cell-a {
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.mat-row-a:hover .mat-cell-a {
+  border-color: currentColor;
+  background-color: bisque;
+}
+
+.demo-row-is-clicked {
+  background-color: bisque;
+}
+
+
+//MyBoard
+.mat-column-delete {
+  padding-left: 16px;
+  font-size: 11px;
+}
+
+
+.mat-column-board-name {
+  padding-left: 16px;
+  font-size: 11px;
+}
+
+.demo-board {
+  width: 100%;
+}
+
+.demo-row-a-is-clicked {
+  background-color:crimson;
+}
+
+//invitationTable
+
+.demo-invitation {
+  width: 100%;
+}
+
+.mat-column-tableName1 {
+  padding-left: 16px;
+  font-size: 11px;
+}
+.mat-column-sentInvitationEmail {
+  padding-left: 16px;
+  font-size: 11px;
+}
+.mat-column-description {
+  padding-left: 16px;
+  font-size: 11px;
+}
+.mat-column-confirmed {
+  padding-left: 16px;
+  font-size: 11px;
+}
+.mat-column-delete-ic {
+  padding-left: 16px;
+  font-size: 11px;
+}

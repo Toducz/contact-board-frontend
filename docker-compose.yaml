@@ -1,0 +1,45 @@
+version: '1.0'
+services:
+  dotnet-postgres-c:
+      image: postgres:latest
+      restart: always
+      environment:
+        - "POSTGRES_PASSWORD=${DB_PASSWORD}"
+        - 'POSTGRES_USERNAME=postgres' 
+      volumes:
+        - type: volume
+          source: pgdata
+          target: /var/lib/postgresql/data
+      networks:
+        - mynetwork
+  
+  rest-api-dotnet-c:
+      image: d.codespring.ro/toducz.endre/kubernetes/backend
+      ports: 
+        - 80:80
+      links:
+        - ${DB}
+      depends_on:
+        - ${DB}
+      networks:
+        - mynetwork
+      environment:
+        - "CONNECTIONSTRING__DEFAULTCONNECTION=Server=${DB};Port=5432;Database=postgres;User Id=postgres;Password=${DB_PASSWORD}"
+
+  frontend-c:
+      image: d.codespring.ro/toducz.endre/kubernetes/frontend
+      ports: 
+        - 81:80
+      links:
+        - ${REST_API_SERVER}
+      depends_on:
+        - ${REST_API_SERVER}
+      networks:
+        - mynetwork
+      
+volumes:
+  pgdata:
+
+networks:
+  mynetwork:
+     driver: bridge
