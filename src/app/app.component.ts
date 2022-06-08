@@ -5,7 +5,11 @@ import { AuthenticationService, DefaultTableService } from './_services';
 import { User } from './_models';
 import { Table } from './_models/tables';
 
-@Component({ selector: 'app', templateUrl: 'app.component.html' })
+@Component({ 
+    selector: 'app',
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.scss'] 
+ })
 export class AppComponent {
     currentUser?: User | undefined | null;
     defaultTable?: Table | null;
@@ -22,7 +26,10 @@ export class AppComponent {
             });
 
 
-        defaultTableService.tableId?.subscribe(x => this.defaultTable = x);
+        defaultTableService.table?.subscribe(x => {
+            this.defaultTable = x;
+            console.log(this.defaultTable);
+        } );
     }
 
     logout() {

@@ -8,6 +8,7 @@ import { NewTableComponent } from './new-table/new-table.component';
 import { RegisterComponent } from './register/register.component'
 import { TablesComponent } from './tables/tables.component';
 import { AuthGuard } from './_helpers';
+import { DetailsComponent } from './details/details.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'feedback', component: FeedbackComponent },
     { path: 'newTable', component: NewTableComponent },
     { path: 'tables', component: TablesComponent },
+    { path: 'details', component: DetailsComponent},
     
 
 

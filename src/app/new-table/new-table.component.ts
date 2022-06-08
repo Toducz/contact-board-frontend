@@ -10,6 +10,14 @@ import { CreateTable } from '@app/_models';
 
 
 
+interface Response {
+  status: string;
+  message: string;
+}
+
+
+
+
 @Component({
   selector: 'app-new-table',
   templateUrl: './new-table.component.html',
@@ -20,7 +28,7 @@ export class NewTableComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  error = '';
+  error?: Response;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,7 +42,7 @@ export class NewTableComponent implements OnInit {
 
     this.loginForm = this.formBuilder.group({
       tableName: ['', Validators.required],
-      invitedPersonEmail: ['', [Validators.required, Validators.email]],
+      invitedPersonEmail: ['', Validators.required],
       description: ['', Validators.required]
     });
   }
@@ -58,12 +66,20 @@ export class NewTableComponent implements OnInit {
       return;
     }
 
+    let tSharedEmail: string[] = []
+    
+    let sharedEmails: any[] = this.f.invitedPersonEmail.value.split(",")
+    sharedEmails.forEach(x => {
+      tSharedEmail.push(x.trim());
+    })
+
     let createTable: CreateTable =
     {
-      UserEmailOwner: this.authenticationService.currentUserValue?.email,
+      UserOwnerEmail: this.authenticationService.currentUserValue?.email,
       tableName: this.f.tableName.value,
-      invitedPersonEmail: this.f.invitedPersonEmail.value,
-      description: this.f.description.value
+      sharedWithEmails: tSharedEmail,
+      description: this.f.description.value,
+      createDate: (new Date()).toISOString()
     };
 
     console.log(createTable);
@@ -73,11 +89,10 @@ export class NewTableComponent implements OnInit {
       .subscribe({
         next: (next) => {
           // get return url from route parameters or default to '/'
-          console.log(next);
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
           this.router.navigate([returnUrl]);
         },
-        error: (error) => {
+        error: (error: Response) => {
           this.error = error;
           this.loading = false;
         }

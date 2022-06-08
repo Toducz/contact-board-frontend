@@ -34,35 +34,11 @@
   padding-left: 16px;
   font-size: 11px;
 
-  word-wrap: break-word !important;
-  white-space: unset !important;
-  flex: 0 0 17% !important;
-
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-
-  word-break: break-word;
-
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
 }
-
 
 .mat-row-a .mat-cell-a {
-  cursor: pointer;
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
-}
-
-.mat-row-a:hover .mat-cell-a {
-  border-color: currentColor;
-  background-color: bisque;
-}
-
-.demo-row-is-clicked {
-  background-color: bisque;
 }
 
 
@@ -112,3 +88,4 @@
   padding-left: 16px;
   font-size: 11px;
 }
+

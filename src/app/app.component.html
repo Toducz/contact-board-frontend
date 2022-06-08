@@ -1,20 +1,32 @@
-﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">Home</a>
-        <a class="nav-item nav-link" routerLink="/feedback" routerLinkActive="active">Feedback</a>
-        <a class="nav-item nav-link" routerLink="/newTable" routerLinkActive="active">Create table</a>
-        <a class="nav-item nav-link" routerLink="/tables" routerLinkActive="active">Tables</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+﻿<html>
 
+<body style="overflow-y: scroll;">
+
+    <nav class="navbar fixed-top navbar-light bg-dark" *ngIf="currentUser"
+    style="margin: 0px; padding:0px">
+        <div class="navbar-nav" fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start center"
+            style="background-color: rgb(35, 33, 45); width: 100%; padding: 0px 20px 0px 20px;">
+            
+            <a class="nav-item nav-link" style="color: rgb(221, 206, 206);" routerLink="/" routerLinkActive="active">Home</a>
+            <a class="nav-item nav-link" routerLink="/feedback" routerLinkActive="active">Feedback</a>
+            <a class="nav-item nav-link" routerLink="/newTable" routerLinkActive="active">Create Bord</a>
+            <a class="nav-item nav-link" routerLink="/tables" routerLinkActive="active">Bords</a>
+            <a class="nav-item nav-link" (click)="logout()">Logout</a>
+
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" *ngIf="defaultTable" routerLink="/tables" routerLinkActive="active">{{
+                    defaultTable.tableName }}</a>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div style="padding-top: 50px; height: 100%;">
+        <router-outlet></router-outlet>
     </div>
 
-    <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link" *ngIf="defaultTable" routerLink="/tables" routerLinkActive="active">{{ defaultTable.tableName }}</a>
-    </div>
-</nav>
 
-<!-- main app container -->
-<div class="container">
-    <router-outlet></router-outlet>
-</div>
+</body>
+
+</html>

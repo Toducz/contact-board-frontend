@@ -1,6 +1,7 @@
 export class CreateTable {
-    UserEmailOwner?: string;
+    UserOwnerEmail?: string;
     tableName?: string;
-    invitedPersonEmail?: string;
+    sharedWithEmails?: String[];
     description?: string;
+    createDate?: string;
 }

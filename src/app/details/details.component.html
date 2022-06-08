@@ -1,0 +1,87 @@
+<html>
+
+<body>
+
+
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!tableExist">
+        <div style="border: solid 3px; padding: 3px; margin: 5%;">
+            <h1>Select a default bord, or create a new bord!</h1>
+        </div>
+    </div>
+
+    <div class="wrapper" *ngIf="tableExist">
+
+
+        <h1 style="margin-bottom: 0px; padding-bottom: 0px;">Details:</h1>
+
+        <div class="line">
+        </div>
+
+        <div fxLayout="row" class="row">
+
+            <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center start">
+
+                <div class="label">
+                    <p> Bord name:</p>
+                </div>
+
+                <div class="label">
+                    <p>Description:</p>
+                </div>
+
+                <div class="label">
+                    <p>Creation date:</p>
+                </div>
+
+                <div class="label">
+                    <p>Number of ratings:</p>
+                </div>
+
+                <div class="label">
+                    <p>Shared with:</p>
+                </div>
+
+                <div class="label">
+                    <p>Owner:</p>
+                </div>
+
+            </div>
+
+            <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center start">
+
+                <div class="label">
+                    <p> {{this.table.value?.tableName}} </p>
+                </div>
+
+                <div class="label">
+                    <p>{{this.table.value?.description}}</p>
+                </div>
+
+                <div class="label">
+                    <p>{{ this.getDate(this.table.value?.createDate!)}}</p>
+                </div>
+
+                <div class="label">
+                    <p>{{this.table.value?.ratings?.length}}</p>
+                </div>
+
+                <div>
+                    <button style="background-color: rgb(255, 255, 255); height: 90%;" mat-button [matMenuTriggerFor]="menu">...</button>
+                    <mat-menu  #menu="matMenu">
+                      <div disabled *ngFor="let shared of this.table.value?.sharedWith" mat-menu-item> {{shared.firstName}} {{shared.lastName}} </div>
+                    </mat-menu>
+                </div>
+                
+                <div class="label">
+                    <p>{{this.table.value?.userOwner?.firstName}} {{this.table.value?.userOwner?.lastName}}</p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</body>
+

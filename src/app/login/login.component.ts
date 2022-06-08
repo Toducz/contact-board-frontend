@@ -8,7 +8,10 @@ import { AuthenticationService } from '@app/_services';
 import { ToastrService } from 'ngx-toastr';
 
 
-@Component({ templateUrl: 'login.component.html' })
+@Component({ 
+    templateUrl: 'login.component.html',
+    styleUrls: ['login.component.scss']
+})
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
@@ -68,8 +71,8 @@ export class LoginComponent implements OnInit {
             });
     }
 
-    btnClickSignUp(){
-        console.log("Endi");
+    btnClickRegister(){
         this.router.navigate(['/register']);
+        
     }
 }

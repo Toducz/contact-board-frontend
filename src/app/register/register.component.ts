@@ -48,8 +48,6 @@ export class RegisterComponent implements OnInit {
 
 onSubmit() {
 
-    console.log("Itt vagyok!");
-
     this.submitted = true;
 
     // stop here if form is invalid
@@ -70,20 +68,18 @@ onSubmit() {
         .pipe(first())
         .subscribe(
             next => {
-                console.log(next);
                 this.loading = false;
-                this.toastr.success('"Succesfule", Registration');
+                this.toastr.success("Succesfule", 'Registration');
             },
             error => {
-                console.log(error);
-                this.toastr.success(error, 'Registration');
+                this.toastr.error(error, 'Registration failed');
                 this.loading = false;
             }
         );
 }
 
   btnClickBack(){
-      console.log("Andi");
+
       this.router.navigate(['/login']);
   }
 }

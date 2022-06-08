@@ -15,13 +15,17 @@ import { Table } from '@app/_models/tables';
 @Injectable({ providedIn: 'root' })
 export class DefaultTableService {
 
-    public tableId: BehaviorSubject<Table | null> = new BehaviorSubject<Table | null>(null);
+    public table: BehaviorSubject<Table | null> = new BehaviorSubject<Table | null>(null);
     public user?: User | null;
 
     constructor(
         private http: HttpClient,
         private authenticationService: AuthenticationService
     ) {
+    }
+
+    setDefaultTable(table: Table){
+        this.table.next(table);
     }
 
     getDefaultTableId() {
@@ -32,41 +36,39 @@ export class DefaultTableService {
             return;
         }
 
-        console.log(this.user);
+
 
         let params = new HttpParams().set("userEmail", this.user.email!);
 
-        this.http.get<any>(`${environment.apiDotnetUrl}/api/DefaultTable`, { params: params })
+        this.http.get<Table>(`${environment.apiDotnetUrl}/api/Table/GetDefaultTable`, { params: params })
             .subscribe(
                 (next) => {
-                    console.log(next);
-                    console.log("DS.ok");
-                    this.tableId?.next(next);
+
+                    this.table?.next(next);
                 },
                 (error) => {
-                    console.log(error + "DefaultTableId service error");
                 }
             );
     }
 
     updateOrAddDefaultTableId() {
 
-
-        if (this.user == null || this.tableId.getValue() == null) {
+        /*
+        if (this.user == null || this.table.getValue() == null) {
+            return;
+        }*/
+        if (this.user == null) {
             return;
         }
- 
-        let paci = { userEmail: this.user.email, tableId: this.tableId.getValue()?.id };
 
-        console.log(paci);
+        let paci = { userEmail: this.user.email, tableId: this.table.getValue()?.id };
 
         this.http.put<any>(`${environment.apiDotnetUrl}/api/DefaultTable`, paci)
             .subscribe(
                 (next) => {
-                    console.log(next + "  update defaultTableId");
+
                 },
                 (error) => {
-                    console.log(error);
                 }
             );
     }

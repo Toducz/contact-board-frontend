@@ -1,20 +1,60 @@
-﻿<div class="container">
+﻿<body>
 
-    <div *ngFor="let row of fetchData">
-        <div class="d-flex justify-content-center" style="width: 100%;">
+    <div fxLayout="row" fxLayoutAlign="center center">
 
-            <textarea placeholder="Type a message" style="width: 80%;" type="text" name="description"
-                [(ngModel)]="row.description"></textarea>
+        <div style="border: solid 3px; padding: 3px; margin: 5%;" *ngIf="!tableExist">
+            <h1>Select a default bord, or create a new bord!</h1>
+        </div>
 
-            <textarea placeholder="Type a message" style="width: 12.5%;" type="text" name="textarea"
-                [(ngModel)]="row.ratingValue"></textarea>
+        <div style="border: solid 3px; padding: 3px; margin: 5%;" *ngIf="!ratingsExist">
+            <h1>Bord have not content!</h1>
+        </div>
 
-            <button (click)="row.isEmojiPickerVisible = !row.isEmojiPickerVisible;" style="width: 7.5%;">😀</button>
+    </div>
 
-            <emoji-mart class="emoji-mart" *ngIf="row.isEmojiPickerVisible"
-                (emojiSelect)="addEmoji($event, row.isEmojiPickerVisible)" title="Choose your emoji">
-            </emoji-mart>
+
+    <div *ngIf="tableExist && ratingsExist ">
+        <div *ngFor="let ratingDate of sortedRatingDate" class="wrapper1">
+
+            <div class="wrapper">
+                <div class="ratings-container">
+
+                    <div *ngFor="let rating of ratingGroupedByDate[ratingDate]" class="rate-container">
+                        <div class="name">
+                            <h6>{{ userNamesByEmail.value[rating.userForeignKey!] }}</h6>
+                        </div>
+                        <div class="rate">
+                            <div class="rating-value">
+                                <h2>{{rating.ratingValue}}</h2>
+                            </div>
+                            <div class="rating-text">
+                                <p>
+                                    {{rating.description}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="time">
+                            <h6>{{  this.getHour(rating.creationDate)}}</h6>
+                        </div>
+                    </div>
+
+                    <div class="date-container">
+                        <div>
+                            <h5>{{ this.getDay(ratingDate)}}</h5>
+                        </div>
+                    </div>
+                    <hr>
+
+
+                </div>
+
+
+
+
+            </div>
+
+
         </div>
     </div>
 
-</div>
+</body>

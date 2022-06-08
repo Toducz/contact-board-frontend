@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Értékelés</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    
-  </head>
-  <body>
-    <div class="testbox">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <h1>A mai nap értékelése:</h1>
-        <div class="item">
-          <p style="margin: 0;">Értékelés:</p>
-          <div class="name-item">
-            <input type="text" formControlName="ratingValue" name="name" placeholder="" />
-          </div>
-          <button type="button"  (click)="isEmojiPickerVisible = !isEmojiPickerVisible;" style="width: 7.5%;padding: 4px;">😀</button>
-        </div>
-        <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible"
-              (emojiSelect)="addEmoji($event)" title="Choose your emoji">
-          </emoji-mart>
-        <div class="item">
-          <p style="margin: 0;">Leírás:</p>
-          <textarea formControlName="description" style="min-height: 200px;" ></textarea>
-        </div>
-        <div class="btn-block">
-          <button>Megjegyez</button>
-        </div>
-      </form>
-    </div>
-  </body>
-</html>
+<body>
+  <div class="wrapper">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+      <h1>Feedback for today:</h1>
+
+      <p style="margin: 0;">feedback:</p>
+      <input type="text" formControlName="ratingValue" name="name" placeholder="" />
+
+      <button class="emoji-button" type="button" (click)="isEmojiPickerVisible = !isEmojiPickerVisible;">😇</button>
+
+      <emoji-mart *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)"
+        title="Choose your emoji">
+      </emoji-mart>
+
+      <p style="margin: 0;">Description:</p>
+      <textarea formControlName="description" style="min-height: 200px;"></textarea>
+
+      <button class="btn btn-info">submit</button>
+
+    </form>
+  </div>
+</body>

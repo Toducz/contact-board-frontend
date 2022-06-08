@@ -18,7 +18,6 @@ export class InvitationService{
   ) { }
 
   getInvitations(userEmail: string) {
-    console.log("Invitation");
     
     let params = new HttpParams().set("userEmail", userEmail);
 

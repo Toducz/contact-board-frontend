@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
-import { Rating, User } from '@app/_models';
+import { Rating, RatingRequest, User } from '@app/_models';
 
 import { RegistrationUser } from '@app/_models';
 
@@ -17,9 +17,8 @@ export class RatingService {
     private http: HttpClient
   ) { }
 
-  addRating(rating: Rating) {
-    console.log(`${environment.apiDotnetUrl}/Rating`);
-    return this.http.post<Rating>(`${environment.apiDotnetUrl}/Rating`, rating);
+  addRating(ratingRequest: RatingRequest) {
+    return this.http.post<Rating>(`${environment.apiDotnetUrl}/api/Table/AddRating`, ratingRequest);
     //return "alma";
   }
 }
